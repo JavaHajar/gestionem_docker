@@ -1,0 +1,22 @@
+version: '3'
+services:
+  dbgestion:
+    image: mysql:8
+    container_name: mysqli
+    environment:
+        MYSQL_ROOT_PASSWORD: admin
+        MYSQL_DATABASE: gestionemploy_jpa
+      
+    ports:
+      - 3302:3306
+
+  myapp:
+    container_name: management
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8065:8080
+    links: 
+      - dbgestion
+
